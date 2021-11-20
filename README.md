@@ -99,15 +99,8 @@ If you are interested in running a Telegram bot, more information can be found a
 python -m binance_trade_bot
 ```
 
-## Backtesting
-
-You can test the bot on historic data to see how it performs.
-
-```shell
-python backtest.py
-```
-
-Feel free to modify that file to test and compare different settings and time periods
+## Paper trading
+enable Paper trading through the `user.cfg`. You can define the start amount in [this line](https://github.com/MasaiasuOse/binance-trade-bot/blob/20841d180bf3181b8f86648c4dbc11babd0232ce/binance_trade_bot/crypto_trading.py#L24) in crypto_trading.py.
 
 ## Database warmup
 
