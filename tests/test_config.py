@@ -16,7 +16,7 @@ def config_test():
     params["API_KEY"] = "vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A"
     params["API_SECRET_KEY"] = "NhqPtmdSJYdKjVHjA7PZj4Mge3R5YNiP1e3UZjInClVN65XAbvqqM6A7H5fATj0j"
 
-    params["SCOUT_MULTIPLIER"] = "5"
+    params["SCOUT_MARGIN"] = "5"
     params["SCOUT_SLEEP_TIME"] = "1"
 
     params["TLD"] = "com"
@@ -60,7 +60,7 @@ def test_config_on_run(do_user_config_env):
 
         if ikey == "SUPPORTED_COIN_LIST":
             getvalue = " ".join(getvalue)
-        if ikey == "SCOUT_MULTIPLIER":
+        if ikey == "SCOUT_MARGIN":
             mustvalue = float(mustvalue)
         if ikey == "SCOUT_SLEEP_TIME":
             mustvalue = int(mustvalue)

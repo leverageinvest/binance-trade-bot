@@ -13,7 +13,7 @@ class Config:  # pylint: disable=too-few-public-methods,too-many-instance-attrib
         config = configparser.ConfigParser()
         config["DEFAULT"] = {
             "bridge": "USDT",
-            "scout_multiplier": "5",
+            "scout_margin": "5",
             "scout_sleep_time": "1",
             "hourToKeepScoutHistory": "1",
             "tld": "com",
@@ -36,8 +36,8 @@ class Config:  # pylint: disable=too-few-public-methods,too-many-instance-attrib
         )
 
         # Get config for scout
-        self.SCOUT_MULTIPLIER = float(
-            os.environ.get("SCOUT_MULTIPLIER") or config.get(USER_CFG_SECTION, "scout_multiplier")
+        self.scout_margin = float(
+            os.environ.get("scout_margin") or config.get(USER_CFG_SECTION, "scout_margin")
         )
         self.SCOUT_SLEEP_TIME = int(
             os.environ.get("SCOUT_SLEEP_TIME") or config.get(USER_CFG_SECTION, "scout_sleep_time")

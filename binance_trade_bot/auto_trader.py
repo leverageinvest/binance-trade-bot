@@ -233,13 +233,13 @@ class AutoTrader(ABC):
             # Obtain (current coin)/(optional coin)
             coin_opt_coin_ratio = coin_sell_price / optional_coin_buy_price
 
-            transaction_fee = self.manager.get_fee(coin.symbol, self.config.BRIDGE.symbol, True) + self.manager.get_fee(
-                to_coin.symbol, self.config.BRIDGE.symbol, False
-            )
+            # Fees
+            from_fee = self.manager.get_fee(pair.from_coin, self.config.BRIDGE, True)
+            to_fee = self.manager.get_fee(pair.to_coin, self.config.BRIDGE, False)
+            transaction_fee = from_fee + to_fee - from_fee * to_fee
 
-            ratio_dict[(coin.idx, to_coin.idx)] = (
-                coin_opt_coin_ratio - transaction_fee * self.config.SCOUT_MULTIPLIER * coin_opt_coin_ratio
-            ) - ratio
+            ratio_dict[(coin.idx, to_coin.idx)] = ((1 - transaction_fee) * coin_opt_coin_ratio / pair.ratio - 1 - self.config.SCOUT_MARGIN / 100
+            )
 
         if len(scout_logs) > 0:
             self.db.batch_log_scout(scout_logs)
