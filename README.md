@@ -99,20 +99,6 @@ If you are interested in running a Telegram bot, more information can be found a
 python -m binance_trade_bot
 ```
 
-### Docker
-
-The official image is available [here](https://hub.docker.com/r/idkravitz/binance-trade-bot) and will update on every new change.
-
-```shell
-docker-compose up
-```
-
-If you only want to start the SQLite browser
-
-```shell
-docker-compose up -d sqlitebrowser
-```
-
 ## Backtesting
 
 You can test the bot on historic data to see how it performs.
@@ -122,6 +108,30 @@ python backtest.py
 ```
 
 Feel free to modify that file to test and compare different settings and time periods
+
+## Database warmup
+
+You can warmup your database with coins wich you might want to add later to your supported coin list. This should prevent uncontrolled jumps when you add a new coin to your supported coin list.
+
+After the execution you should wait one or two trades of the bot before adding any new coin to your list.
+
+By running the script without parameters, it will warm up the bots default database with all available coins for the bridge.
+
+```shell
+python3 database_warmup.py
+```
+
+If you want to specify a separate db file you can use the -d or --dbfile parameter. If not provided, the script will use the bots default db file.
+
+```shell
+python3 database_warmup.py -d data/warmup.db
+```
+
+You can also specify the coins you want to warmup with the -c or --coinlist parameter. If not provided the script will warmup all coins available for the bridge.
+
+```shell
+python3 database_warmup.py -c 'ADA BTC ETH LTC'
+```
 
 ## Developing
 
